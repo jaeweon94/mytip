@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="uTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <title>마이팁 - 세상의 모든 팁!</title>
+    <link rel="stylesheet" href="{% static "/style.css" %}" />
+
+    <!-- script part -->
+    <script src="https://use.fontawesome.com/926fe18a63.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+    $(function(){
+        $(".headC").click(function(){
+            $(".headB").slideToggle();
+        });
+    });
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="container-small">
+
+                <a href="#" class="logo"><img src="image/logo.png"></a>
+
+                <button type="button" class="headC">
+                    <span class="fa fa-bars" title="MENU"></span>
+                </button>
+            </div>
+
+            <nav class="headB">
+                <ul>
+                    <li><a href="#" class="tip">내 팁 등록!</a></li>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">가입하기</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="container2">
+            <ul>
+                <li><a href="#">자기소개서</a></li>
+                <li><a href="#">합격수기</a></li>
+                <li><a href="#">대학생활</a></li>
+                <li><a href="#">영어</a></li>
+                <li><a href="#">돈 버는 방법</a></li>
+                <li><a href="#">마케팅</a></li>
+                <li><a href="#">독후감</a></li>
+                <li><a href="#">성공 이야기</a></li>
+                <li><a href="#">심리 상담</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- <section class="pcimg">
+        <img src="image/main.jpg">
+    </section>
+    <section class="mimg">
+        <img src="image/main_phone.jpg">
+    </section> -->
+
+    <div class="search">
+        <span class="fa fa-search"></span>
+        <input type="text" placeholder="검색어를 입력해주세요">
+    </div>
+
+
+    {% block content%}
+    {% endblock %}
+
+</body>
+</html>
