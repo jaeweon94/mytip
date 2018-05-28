@@ -42,6 +42,7 @@
                         <li><a href="#">포인트 충전</a></li>
                         <li><a href="{% url 'profile' %}">마이페이지</a></li>
                         <li><a href="{% url 'logout' %}">로그아웃</a></li>
+                        <li><a href="#">잔여포인트 {{ user.profile.point }}P</a></li>
                     {% endif %}
                 </ul>
             </nav>

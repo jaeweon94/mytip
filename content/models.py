@@ -18,13 +18,13 @@ class Content(models.Model):
               ('9', '심리 상담'),
     ))
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=40)
     content = models.TextField()
     file_upload = models.FileField(blank=True, upload_to = 'admin/%Y/%m/%d')
 
     point = models.CharField(max_length=10)
     score = models.CharField(max_length=10)
+    user_set = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True) #auto_now_add 최초에만
     updated_at = models.DateTimeField(auto_now=True)

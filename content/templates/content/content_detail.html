@@ -4,5 +4,17 @@
 {% block content %}
     <h1>{{ content.title }}</h1>
     <h2>{{ content.content }}</h2>
-    <a href="#">구매하기</a>
+
+
+    {% if not request.user in content.user_set.all %}
+        <form>
+            <input name="p" type="hidden" value="{{ request.user.id }}" />
+            <input type="submit" value="구매하기"/>
+        </form>
+    {% else %}
+        {% if content.file_upload %}
+            <a href="{{ content.file_upload.url }}">{{ content.title }}</a>
+        {% endif %}
+    {% endif %}
+
 {% endblock %}

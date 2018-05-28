@@ -11,7 +11,7 @@ def content_list(request):
     if s:
         contents = contents.filter(title__icontains = s)
 
-    return render(request, 'content/content_list.html', { 'contents': contents })
+    return render(request, 'content/content_list.html', { 'contents': contents, 's':s, })
 
 
 def content_category(request, category):
@@ -23,7 +23,7 @@ def content_category(request, category):
     if s:
         contents = contents_all.filter(title__icontains = s)
 
-    return render(request, 'content/content_category.html', { 'contents': contents })
+    return render(request, 'content/content_category.html', { 'contents': contents, 's':s, })
 
 
 def content_register(request):
@@ -32,5 +32,17 @@ def content_register(request):
 
 def content_detail(request, pk):
     content = get_object_or_404(Content, pk=pk)
+    p = request.GET.get('p', '') #p는 user_id로 전달받음
+    current_point = int(request.user.profile.point)
 
-    return render(request, 'content/content_detail.html', { 'content': content })
+    if p:
+        if current_point >= int(content.point): #포인트 구현
+            current_point = current_point - int(content.point)
+            request.user.profile.point = current_point
+            request.user.profile.save()
+
+            content.user_set.add(p)
+
+
+
+    return render(request, 'content/content_detail.html', { 'content': content, 'p': p })
