@@ -1,0 +1,36 @@
+<!--
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" />
+</form>
+-->
+
+<!-- Askdjango에서 추천함 -->
+<form action="" method="post">
+    {% csrf_token %}
+
+    {% for error in form.non_field_errors %}
+        {{ error }}
+    {% endfor %}
+
+    <table>
+    {% for field in form.visible_fields %}
+
+        <tr>
+        <td>{{ field.label_tag }}</td>
+
+        <td>
+            {{ field }}
+            {{ field.help_text }}
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+</form>

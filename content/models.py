@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 
@@ -20,6 +21,8 @@ class Content(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=40)
     content = models.TextField()
+    file_upload = models.FileField(blank=True, upload_to = 'admin/%Y/%m/%d')
+
     point = models.CharField(max_length=10)
     score = models.CharField(max_length=10)
 
@@ -31,4 +34,7 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+      return reverse('content:content_detail', args=[self.id])
 

@@ -1,0 +1,70 @@
+{% extends 'register/layout.html' %}
+
+{% block content %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {% for error in form.non_field_errors %}
+        {{ error }}
+    {% endfor %}
+
+    <table>
+        {% for field in form.visible_fields %}
+            <tr>
+            <td>{{ field.label_tag }}</td>
+
+            <td>
+                {{ field }}
+                {{ field.help_text }}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" />
+</form>
+
+{% endblock %}
+
+    <!--
+    {% csrf_token %}
+    <h1>등록 폼입니다</h1>
+    <table>
+        <input name="user" type="hidden" value="{{ user.username }}"/>
+        <tr>
+            <td>제목</td>
+            <td><input name="title" type="text" /></td>
+        </tr>
+        <tr>
+            <td>소개글</td>
+            <td><textarea name="content" cols='40' rows='10'/></textarea></td>
+        </tr>
+        <tr>
+            <td>핸드폰번호</td>
+            <td><input name="phone_number" type="text" /></td>
+        </tr>
+        <tr>
+            <td>카카오톡 아이디</td>
+            <td><input name="kakao_id" type="text" /></td>
+        </tr>
+        <tr>
+            <td>은행</td>
+            <td><input name="bank" type="text" /></td>
+        </tr>
+        <tr>
+            <td>계좌번호</td>
+            <td><input name="account_number" type="text" /></td>
+        </tr>
+        <tr>
+            <td>계좌실명</td>
+            <td><input name="real_name" type="text" /></td>
+        </tr>
+        <tr><td><input name="agree" type="checkbox" value="Y"/>마이팁에 판매권한을 위임합니다.</td></tr>
+    </table>
+    <input type="submit" value="제출" />
+</form>
+-->

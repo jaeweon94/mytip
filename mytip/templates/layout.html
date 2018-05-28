@@ -22,36 +22,42 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="container-small">
+        <div class="headerA">
+            <div class="headerA-small">
 
-                <a href="#" class="logo"><img src="image/logo.png"></a>
+                <a href="{% url 'root' %}" class="logo"><img src="image/logo.png"></a>
 
-                <button type="button" class="headC">
+                <button type="button" class="headerA-mobile">
                     <span class="fa fa-bars" title="MENU"></span>
                 </button>
             </div>
 
-            <nav class="headB">
+            <nav class="headerA-right">
                 <ul>
-                    <li><a href="#" class="tip">내 팁 등록!</a></li>
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">가입하기</a></li>
+                    <li><a href="{% url 'content:content_register' %}" class="tip">내 팁 등록!</a></li>
+                    {% if not user.is_authenticated %}
+                        <li><a href="{% url 'login' %}">로그인</a></li>
+                        <li><a href="{% url 'signup' %}">회원가입</a></li>
+                    {% else %}
+                        <li><a href="#">포인트 충전</a></li>
+                        <li><a href="{% url 'profile' %}">마이페이지</a></li>
+                        <li><a href="{% url 'logout' %}">로그아웃</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
 
-        <div class="container2">
+        <div class="headerB">
             <ul>
-                <li><a href="#">자기소개서</a></li>
-                <li><a href="#">합격수기</a></li>
-                <li><a href="#">대학생활</a></li>
-                <li><a href="#">영어</a></li>
-                <li><a href="#">돈 버는 방법</a></li>
-                <li><a href="#">마케팅</a></li>
-                <li><a href="#">독후감</a></li>
-                <li><a href="#">성공 이야기</a></li>
-                <li><a href="#">심리 상담</a></li>
+                <li><a href="{% url 'content:content_category' 1 %}">자기소개서</a></li>
+                <li><a href="{% url 'content:content_category' 2 %}">합격수기</a></li>
+                <li><a href="{% url 'content:content_category' 3 %}">대학생활</a></li>
+                <li><a href="{% url 'content:content_category' 4 %}">영어</a></li>
+                <li><a href="{% url 'content:content_category' 5 %}">돈 버는 방법</a></li>
+                <li><a href="{% url 'content:content_category' 6 %}">마케팅</a></li>
+                <li><a href="{% url 'content:content_category' 7 %}">독후감</a></li>
+                <li><a href="{% url 'content:content_category' 8 %}">성공 이야기</a></li>
+                <li><a href="{% url 'content:content_category' 9 %}">심리 상담</a></li>
             </ul>
         </div>
     </header>
@@ -63,13 +69,7 @@
         <img src="image/main_phone.jpg">
     </section> -->
 
-    <div class="search">
-        <span class="fa fa-search"></span>
-        <input type="text" placeholder="검색어를 입력해주세요">
-    </div>
-
-
-    {% block content%}
+    {% block content %}
     {% endblock %}
 
 </body>

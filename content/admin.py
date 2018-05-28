@@ -4,4 +4,5 @@ from .models import Content
 
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ['user', 'title', 'content', 'score']
+    list_display = ['id', 'user', 'title', 'content', 'score']
+    list_display_links = ['title',]

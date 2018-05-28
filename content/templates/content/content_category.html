@@ -1,0 +1,33 @@
+{% extends 'content/layout.html' %}
+
+{% block content %}
+
+    <div class= "cat_box">
+    </div>
+
+    <form class="search">
+        <span class="fa fa-search"></span>
+        <input type="text" placeholder="검색어를 입력해주세요" name='s' value="{{ s }}"/>
+    </form>
+
+
+    {% if not contents %}
+        <h1>There's no any contents</h1>
+    {% endif %}
+
+
+    {% for content in contents %}
+
+        <section class="content">
+            <a href="{% url 'content:content_detail' content.pk %}">
+                <p>{{ content.get_category_display }}</p>
+                <div class="content_text">
+                    <h2>{{ content.title }}</h2>
+                    <h2 class="point">{{ content.point }}P</h2>
+                </div>
+            </a>
+        </section>
+
+    {% endfor %}
+
+{% endblock %}
